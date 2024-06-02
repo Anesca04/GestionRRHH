@@ -14,9 +14,15 @@
 <body>  
 
 <div class="container">
-    <?php include("menu.php");?>
-    <p>Editar Solicitud</p>
+  <div class="fila">
+	  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold">
+        <?php include("menu.php");?>
+		<p>Editar Solicitud</p>
+      </div>
+  </div>
 
+  <div class="fila">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <?php 
     if (!isset($_POST['idSolicitud'])) { //Si el formulario no se ha enviado, lo muestra
         //Recupero el registro a modificar
@@ -86,13 +92,15 @@
     $sql=sprintf("insert into solicitud_has_sustituto (idSolicitud, idSustituto) values(%s, %s)", $idSolicitud, $idSustituto);
 
     //echo $sql;
-    echo "<h2 style='text-align:center'>SUSTITUTO AÑADIDO</h2>";
-    echo "<p style='text-align:center'><a href='inicio.php'><button class='boton'> Volver </button></a></p>";
+    echo "<br><h2 style='text-align:center'>SUSTITUTO AÑADIDO</h2>";
+    echo "<br><p style='text-align:center'><a href='inicio.php'><button class='boton'> Volver </button></a></p>";
 
     $db->query($sql); //Inserto el registro  
 } 
 ?>
 
+      </div>
+  </div>
 </div>
 
 </BODY>

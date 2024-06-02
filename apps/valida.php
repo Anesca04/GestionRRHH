@@ -52,7 +52,7 @@ else { ?>
   
     <div class="fila">
       <br><h4>USUARIO NO ENCONTRADO</h4><br>
-      <p class="boton" style="width:80px;;text-align: center"><a href="../index.php">VOLVER</a></p>
+      <p class="boton" style="width:80px;text-align: center"><a href="../index.php">VOLVER</a></p>
 	    <br><p style="color:blue;font-size:12px"><?=date('Y')?> &copy; anesca</p>
     </div>
 <?php 

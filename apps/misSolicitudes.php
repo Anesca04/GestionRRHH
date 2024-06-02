@@ -64,9 +64,21 @@
 			//Recorremos la tabla y muestro los registrtos
 			echo "<tbody>";
 			while ( $registro=$tabla->fetch_assoc() ) { 							
-				echo "<tr><td>".MostrarFecha($registro["fecInicial"])."</td><td>".MostrarFecha($registro["fecFinal"])."</td><td>".$registro["diasSolicitados"]."</td>";				
-				echo "<td><a href='editarSolicitud.php?id=".$registro["idSolicitud"]."'><img src='../img/iconos/editar.png' width=24px></a></td>";
-				echo "<td><a href='misSolicitudes.php?id=".$registro["idSolicitud"]."' onclick='return confirmar()'><img src='../img/iconos/eliminar.png' width=24px></a></td></tr>";
+
+				//Compruebo si la petición ya tiene sustituto
+				$sql="select * from solicitud_has_sustituto where idSolicitud=".$registro["idSolicitud"];
+				$tsustituto=$db->query($sql); //realizo la consulta
+				if (!$tsustituto->fetch_assoc()) {
+					//La petición NO tiene sustituto
+					echo "<tr><td>".MostrarFecha($registro["fecInicial"])."</td><td>".MostrarFecha($registro["fecFinal"])."</td><td>".$registro["diasSolicitados"]."</td>";				
+					echo "<td><a href='editarSolicitud.php?id=".$registro["idSolicitud"]."'><img src='../img/iconos/editar.png' width=24px></a></td>";
+					echo "<td><a href='misSolicitudes.php?id=".$registro["idSolicitud"]."' onclick='return confirmar()'><img src='../img/iconos/eliminar.png' width=24px></a></td></tr>";
+				}
+				else {
+					//La petición tiene sustituto
+					echo "<tr style='color:green'><td>".MostrarFecha($registro["fecInicial"])."</td><td>".MostrarFecha($registro["fecFinal"])."</td><td>".$registro["diasSolicitados"]."</td>";				
+					echo "<td> </td><td> </td></tr>";					
+				}
 			} //FIN while articulos 
 			echo "</tbody>";
 
